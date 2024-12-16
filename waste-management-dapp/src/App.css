@@ -1,0 +1,86 @@
+/* Apply to the whole page to set the video background */
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  font-family: Arial, sans-serif;
+  background-color: #6ec579; /* Default background color */
+  overflow: hidden;
+}
+
+/* Set the video as a full-screen background */
+#video-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensure the video covers the entire screen */
+  opacity: 0.4; /* Adjust opacity for desired visibility */
+  z-index: -1; /* Place the video behind the content */
+}
+
+/* Center the content using flexbox */
+.App {
+  position: relative; /* Ensure content is above the video */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  text-align: center;
+  padding: 20px;
+  color: #ffffff; /* Default text color */
+  z-index: 1; /* Ensure the content is placed above the background */
+}
+
+/* Form styling for inputs and buttons */
+input {
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  width: 200px;
+  font-size: 16px; /* Font size of input fields */
+}
+
+button {
+  padding: 10px 20px;
+  margin: 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: #007BFF; /* Default button color */
+  color: #fff;
+  cursor: pointer;
+  font-size: 18px; /* Font size of button */
+}
+
+button:hover {
+  background-color: #0056b3; /* Darker shade on hover */
+}
+
+h1 {
+  font-size: 5rem; /* Default header font size */
+  margin-bottom: 20px;
+  color: #08446c;
+}
+/* Header and text customizations */
+h3 {
+  font-size: 3rem; /* Default header font size */
+  margin-bottom: 20px;
+}
+
+/* Response message styling */
+p {
+  font-size: 1.2rem; /* Font size for messages */
+  color: #f7f7f7; /* Default response color */
+}
+
+/* Transaction hash styling */
+.transaction-hash {
+  font-size: 1rem;
+  color: #f1c40f; /* Color for transaction hash */
+  word-break: break-all;
+  margin-top: 20px;
+}

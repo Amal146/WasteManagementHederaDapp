@@ -1,0 +1,30 @@
+{
+  "name": "hedera",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@nomiclabs/hardhat-ethers": "^2.2.3",
+    "dotenv": "^16.4.7",
+    "ethers": "^5.7.2",
+    "hardhat": "^2.22.17"
+  },
+  "dependencies": {
+    "@hashgraph/sdk": "^2.55.1",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^13.0.1",
+    "@testing-library/user-event": "^14.5.2",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "web-vitals": "^4.2.4",
+    "web3": "^4.16.0"
+  },
+  "description": ""
+}

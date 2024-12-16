@@ -1,0 +1,5 @@
+Deploying contracts with the account: 0x16E8923c8aC2939b8532E74bbdC09Cf0B6FE283A
+WasteManagement contract deployed to: 0x5CfdCDEfa9CA626dda2b76bDD3fAD8864d320264
+WasteManagementRegulation contract deployed to: 0x292fFeDFd7FfD0010F63d3FC79FfC05Be37133c8
+RecyclingManagement contract deployed to: 0xE1e576551872Fe7c8d3feb8B8d024DF213dE965d
+Rewards_LoyaltyPrograms contract deployed to: 0x50B8b1929D6B3dc5920ec597Cc5457b16dB6F9Fa
