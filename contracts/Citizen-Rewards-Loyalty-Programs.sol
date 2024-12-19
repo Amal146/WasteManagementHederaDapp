@@ -1,7 +1,50 @@
 // SPDX-License-Identifier: MIT
+
 pragma solidity ^0.8.0;
 
-contract Rewards_LoyaltyPrograms {
+contract CouponGenerator {
+    struct Coupon {
+        string code;
+        uint256 expiration;
+        uint256 value;
+    }
+
+    mapping(address => Coupon[]) public userCoupons;
+
+    event CouponGenerated(
+        address indexed user,
+        string code,
+        uint256 expiration,
+        uint256 value
+    );
+
+    function generateCoupon(
+        address _user,
+        string memory _code,
+        uint256 _expiration,
+        uint256 _value
+    ) public {
+        userCoupons[_user].push(Coupon(_code, _expiration, _value));
+        emit CouponGenerated(_user, _code, _expiration, _value);
+    }
+
+    function getCoupons(address _user)
+        public
+        view
+        returns (Coupon[] memory)
+    {
+        return userCoupons[_user];
+    }
+}
+
+contract RewardsLoyaltyPrograms {
+    // Deployed Coupon Generator Contract
+    CouponGenerator public couponGenerator;
+
+    constructor() {
+        couponGenerator = new CouponGenerator(); // Deploying nested contract
+    }
+
     // Struct to store information about recyclable materials
     struct Material {
         string name;
@@ -38,13 +81,8 @@ contract Rewards_LoyaltyPrograms {
         _;
     }
 
-    // Constructor to set the contract deployer as the owner
-    constructor() {
-        owner = msg.sender;
-    }
-
-    // Function to add a new recyclable material (no price anymore)
-    function addMaterial(string memory _name) public onlyOwner {
+    // Function to add a new recyclable material
+    function addMaterial(string memory _name) public {
         materials[materialCount] = Material(_name);
         emit MaterialAdded(materialCount, _name);
         materialCount++;
@@ -59,7 +97,7 @@ contract Rewards_LoyaltyPrograms {
         citizens[_citizen].totalWasteThrown += _weight;
 
         // Calculate loyalty points: 10 points per 1kg of waste thrown
-        uint256 pointsEarned = _weight * 10; // 1kg = 10 points
+        uint256 pointsEarned = _weight * 10;
         citizens[_citizen].loyaltyPoints += pointsEarned;
 
         emit WasteThrownLogged(_citizen, _materialId, _weight);
@@ -71,14 +109,11 @@ contract Rewards_LoyaltyPrograms {
         return (citizens[_citizen].totalWasteThrown, citizens[_citizen].loyaltyPoints);
     }
 
-    // Function to redeem loyalty points for rewards (can be expanded)
+    // Function to redeem loyalty points for rewards
     function redeemLoyaltyPoints(address _citizen, uint256 _points) public {
         require(citizens[_citizen].loyaltyPoints >= _points, "Not enough loyalty points");
         citizens[_citizen].loyaltyPoints -= _points;
-
-        // Logic to redeem points for rewards (can be expanded)
-        // For example, points could be exchanged for tokens, discounts, or physical goods.
-
         emit LoyaltyPointsUpdated(_citizen, citizens[_citizen].loyaltyPoints);
     }
 }
+

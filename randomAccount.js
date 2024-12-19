@@ -3,7 +3,7 @@ const { ethers } = require("ethers");
 // Connect to Hedera Testnet
 const provider = new ethers.providers.JsonRpcProvider("https://testnet.hashio.io/api");
 
-// Generate a New Wallet
+// Generate a New Test Wallet
 const wallet = ethers.Wallet.createRandom();
 
 console.log("Wallet Address:", wallet.address);

@@ -1,48 +1,94 @@
-/* Apply to the whole page to set the video background */
-body, html {
+/* Reset default styles */
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
   height: 100%;
   width: 100%;
   font-family: Arial, sans-serif;
-  background-color: #6ec579; /* Default background color */
-  overflow: hidden;
+  background-color: #6ec579;
+  overflow-x: hidden; /* Disable horizontal scrolling */
 }
 
-/* Set the video as a full-screen background */
+/* Full-screen video background */
 #video-background {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Ensure the video covers the entire screen */
-  opacity: 0.4; /* Adjust opacity for desired visibility */
-  z-index: -1; /* Place the video behind the content */
+  object-fit: cover;
+  opacity: 0.3; 
+  z-index: -1; 
 }
 
-/* Center the content using flexbox */
+/* Enable scrolling for content */
 .App {
-  position: relative; /* Ensure content is above the video */
+  position: relative;
+  min-height: 100vh; 
+  padding: 40px 20px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  height: 100%;
+  justify-content: flex-start;
   text-align: center;
-  padding: 20px;
-  color: #ffffff; /* Default text color */
-  z-index: 1; /* Ensure the content is placed above the background */
+  color: #ffffff;
+  z-index: 1; 
+  overflow-y: auto; 
+  scroll-behavior: smooth;
 }
-
+.Container{
+  height: 600px;
+  overflow-y:auto ;
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  justify-content: space-between;
+  gap: 20px;
+}
+.reponse {
+  align-items: first baseline;
+  background : #297bd24e;
+  padding: 2rem;
+  margin-bottom: 30px;
+  border-radius: 8px;
+  border: 0.2cm solid #9c589484;
+  width:250px;
+  height: 250px;
+  flex: 0 0 auto;
+}
+.Section{
+  flex: 0 0 auto;
+  background: #9c5894c8;
+  padding: 1rem;
+  margin: 1rem auto;
+  width: 22%;
+  border-radius: 8px;
+}
 /* Form styling for inputs and buttons */
-input {
+input, select, textarea {
   padding: 10px;
   margin: 10px;
   border-radius: 5px;
   border: 1px solid #ddd;
-  width: 200px;
-  font-size: 16px; /* Font size of input fields */
+  width: 175px;
+  font-size: 10px;
+}
+
+label{
+  font-size: 0.7rem;
+  margin: 0px;
+  align-self:self-start ;
+  padding: 0%;
+}
+
+#checkbox{
+  margin: 0px;
+  width: 30px;
 }
 
 button {
@@ -50,37 +96,100 @@ button {
   margin: 10px;
   border-radius: 5px;
   border: none;
-  background-color: #007BFF; /* Default button color */
+  background-color: #08446c ;
   color: #fff;
   cursor: pointer;
-  font-size: 18px; /* Font size of button */
+  font-size: 10px;
+  transition: background-color 0.3s ease;
 }
 
 button:hover {
-  background-color: #0056b3; /* Darker shade on hover */
+  background-color: #0056b3;
 }
 
 h1 {
-  font-size: 5rem; /* Default header font size */
-  margin-bottom: 20px;
+  border: 0.2cm solid #9c589484;;
+  border-radius: 2px;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+  padding: 20px;
   color: #08446c;
 }
-/* Header and text customizations */
+
 h3 {
-  font-size: 3rem; /* Default header font size */
-  margin-bottom: 20px;
+  font-size: 1rem;
+  margin: 20px 0;
+  color: #041c2c;
+  text-decoration: underline;
 }
 
-/* Response message styling */
+h2 {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 1.5rem;
+  margin: 20px 0;
+  color: rgb(18, 67, 99);
+}
+
 p {
-  font-size: 1.2rem; /* Font size for messages */
-  color: #f7f7f7; /* Default response color */
+  font-size: 1rem;
+  font-style: oblique;
+  color: #f7f7f7;
+}
+
+#pre {
+  font-size: 1.5rem;
+  font-weight: bolder;
+  font-style: oblique;
+  font-family: 'Times New Roman', Times, serif;
+  color: #08446c;
+
+}
+
+.Title{
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.tech-icons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.tech-icons img {
+  width: 40px;
+  height: 40px;
+  transition: transform 0.3s;
+}
+
+.tech-icons img:hover {
+  transform: scale(1.1); /* Slight zoom effect on hover */
 }
 
 /* Transaction hash styling */
 .transaction-hash {
   font-size: 1rem;
-  color: #f1c40f; /* Color for transaction hash */
+  color: #f1c40f;
   word-break: break-all;
   margin-top: 20px;
+}
+
+/* Scrollbar customization */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #08446c;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f7f7f7;
 }

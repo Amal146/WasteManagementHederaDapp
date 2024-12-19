@@ -75,3 +75,4 @@ contract WasteManagementRegulation {
         return wasteCollectionCount;
     }
 }
+
