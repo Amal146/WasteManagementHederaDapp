@@ -12,7 +12,8 @@
     "@nomiclabs/hardhat-ethers": "^2.2.3",
     "dotenv": "^16.4.7",
     "ethers": "^5.7.2",
-    "hardhat": "^2.22.17"
+    "hardhat": "^2.22.17",
+    "hardhat-gas-reporter": "^2.2.2"
   },
   "dependencies": {
     "@hashgraph/sdk": "^2.55.1",

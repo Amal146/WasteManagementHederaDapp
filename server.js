@@ -1247,7 +1247,7 @@ setupContracts().then(() => {
 
       // Wait for the transaction to be mined
       await tx.wait();
-
+      console.log("Transaction Details:", tx);
       console.log(`Material added successfully with name: ${name}`);
     } catch (error) {
       console.error("Error adding material:", error);
@@ -1260,6 +1260,7 @@ setupContracts().then(() => {
     try {
       const count = await rewardsLoyaltyProgramsContract.materialCount();
       res.status(200).json({ materialCount: count.toString() });
+      
     } catch (error) {
       console.error("Error fetching material count:", error);
       res.status(500).json({ error: "Failed to fetch material count" });
@@ -1283,6 +1284,7 @@ setupContracts().then(() => {
         value
       );
       await tx.wait();
+      console.log("Transaction Details:", tx);
       res.status(200).json({
         message: "Coupon generated successfully",
         transactionHash: tx.hash,
@@ -1330,10 +1332,12 @@ app.post("/log-waste-thrown", async (req, res) => {
       weight
     );
     await tx.wait();
+    console.log("Transaction Details:", tx);
     res.status(200).json({
       message: "Waste thrown logged successfully",
       transactionHash: tx.hash,
     });
+
   } catch (error) {
     console.error("Error logging waste thrown:", error);
     res.status(500).json({ error: "Failed to log waste thrown" });
@@ -1370,6 +1374,7 @@ app.post("/redeem-loyalty-points", async (req, res) => {
       points
     );
     await tx.wait();
+    console.log("Transaction Details:", tx);
     res.status(200).json({
       message: "Loyalty points redeemed successfully",
       transactionHash: tx.hash,
@@ -1387,6 +1392,8 @@ app.post("/add-material", async (req, res) => {
     const { name, pricePerKg } = req.body;
     const tx = await recyclingContract.addMaterial(name, pricePerKg);
     await tx.wait();
+    console.log("Transaction Details:", tx);
+
     res
       .status(200)
       .json({ message: "Material added successfully!", txHash: tx.hash });
@@ -1448,6 +1455,7 @@ app.post("/manage-collection", async (req, res) => {
       recyclingCompany
     );
     await tx.wait();
+    console.log("Transaction Details:", tx);
     res.status(200).json({
       message: "Waste collection logged successfully!",
       txHash: tx.hash,
@@ -1467,6 +1475,7 @@ app.post("/verify-recycling", async (req, res) => {
       recyclingVerified
     );
     await tx.wait();
+    console.log("Transaction Details:", tx); 
     res
       .status(200)
       .json({ message: "Recycling verification updated!", txHash: tx.hash });
@@ -1517,6 +1526,17 @@ app.post("/api/bins/add", express.json(), async (req, res) => {
     // Call smart contract method
     const tx = await contract.addBin(binID, capacity, location);
     await tx.wait();
+    console.log("Transaction Details:", tx);   const fs = require("fs");
+
+const csvLine = `${tx.hash},${tx.from},${tx.to},${tx.value.toString()},${tx.gasLimit.toString()},${tx.maxFeePerGas.toString()},${tx.maxPriorityFeePerGas.toString()},${tx.nonce},${tx.chainId},${tx.type}\n`;
+
+fs.appendFile("transactions.csv", csvLine, (err) => {
+  if (err) {
+    console.error("Error writing to file:", err);
+  } else {
+    console.log("Transaction saved to transactions.csv");
+  }
+});
 
     res.json({
       message: "Bin added successfully!",
@@ -1560,6 +1580,7 @@ app.post("/api/bins/weigh", express.json(), async (req, res) => {
   try {
     const tx = await contract.weighGarbage(binID, weight);
     await tx.wait();
+    console.log("Transaction Details:", tx);
     res.json({ message: "Garbage weighed successfully", txHash: tx.hash });
   } catch (error) {
     res.status(500).json({ error: "Error weighing garbage" });
