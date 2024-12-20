@@ -1,4 +1,4 @@
-#date,#from_account_id,#to_account_id,#amount,#transaction_id,#transaction_type
+date,from_account_id,to_account_id,amount,transaction_id,transaction_type
 12/16/2024,0.0.902,,-0.00035399,0.0.902-1734368964-589317086,ETHEREUMTRANSACTION
 12/16/2024,0.0.5171756,,-0.00906000,0.0.902-1734368964-589317086,ETHEREUMTRANSACTION
 12/16/2024,,0.0.3,+0.00001264,0.0.902-1734368964-589317086,ETHEREUMTRANSACTION

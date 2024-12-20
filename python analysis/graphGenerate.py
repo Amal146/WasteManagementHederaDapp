@@ -56,3 +56,54 @@ plt.xticks(rotation=45, ha='right')
 plt.show()
 
 
+# Plot histogram for transaction amounts
+plt.figure(figsize=(8, 6))
+plt.hist(df['amount'], bins=20, edgecolor='black', alpha=0.7)
+plt.title('Transaction Amount Distribution')
+plt.xlabel('Amount')
+plt.ylabel('Frequency')
+plt.grid(True)
+plt.show()
+
+# Convert date to datetime format
+df['date'] = pd.to_datetime(df['date'], format='%m/%d/%Y')
+
+# Count the number of transactions per day
+df['date'] = df['date'].dt.date
+transaction_counts = df.groupby('date').size()
+
+# Plot transactions over time
+transaction_counts.plot(kind='line', figsize=(10, 6))
+plt.title('Transactions Over Time')
+plt.xlabel('Date')
+plt.ylabel('Number of Transactions')
+plt.grid(True)
+plt.show()
+
+# Create separate columns for sent and received amounts
+df['sent_amount'] = df['amount'].where(df['amount'] < 0, 0)
+df['received_amount'] = df['amount'].where(df['amount'] > 0, 0)
+
+# Sum the amounts sent and received per day
+amounts_per_day = df.groupby('date')[['sent_amount', 'received_amount']].sum()
+
+# Plot stacked bar chart
+amounts_per_day.plot(kind='bar', stacked=True, figsize=(10, 6))
+plt.title('Sent and Received Amounts Over Time')
+plt.xlabel('Date')
+plt.ylabel('Amount')
+plt.grid(True)
+plt.show()
+
+
+# Count transactions per 'from_account_id'
+account_transactions = df.groupby('from_account_id').size()
+
+# Plot bar chart
+account_transactions.plot(kind='bar', figsize=(10, 6))
+plt.title('Transactions per Account')
+plt.xlabel('Account ID')
+plt.ylabel('Number of Transactions')
+plt.grid(True)
+plt.show()
+
